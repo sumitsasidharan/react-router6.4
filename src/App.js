@@ -15,7 +15,8 @@ import FAQ from './pages/help/FAQ';
 import Contact from './pages/help/Contact';
 import NotFound from './pages/NotFound';
 import CareersLayout from './layouts/CareersLayout';
-import Careers from './pages/careers/Careers';
+import Careers, { careersLoader } from './pages/careers/Careers';
+import CareerDetails, { careerDetailsLoader } from './pages/careers/CareerDetails';
 
 const router = createBrowserRouter(
    createRoutesFromElements(
@@ -30,7 +31,12 @@ const router = createBrowserRouter(
          </Route>
 
          <Route path="careers" element={<CareersLayout />}>
-            <Route index element={<Careers />} />
+            <Route index element={<Careers />} loader={careersLoader} />
+            <Route
+               path=":id"
+               element={<CareerDetails />}
+               loader={careerDetailsLoader}
+            />
          </Route>
 
          {/* 404 NOT FOUND ROUTE */}
@@ -44,22 +50,3 @@ function App() {
 }
 
 export default App;
-// React Router in Depth #4 - 6.28
-
-// OLD , TRADITIONAL METHOD
-
-/* <BrowserRouter>
-      <header>
-         <nav>
-            <h1>Jobarouter</h1>
-            <NavLink to="/" >Home</NavLink>
-            <NavLink to="about" >About</NavLink>
-         </nav>
-      </header>
-      <main>
-         <Routes>
-            <Route index element={<Home />} />
-            <Route path="/about" element={<About />} />
-         </Routes>
-      </main>
-    </BrowserRouter> */
