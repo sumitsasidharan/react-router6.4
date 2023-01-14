@@ -17,9 +17,7 @@ const ROLES = {
    Admin: 5150,
 };
 
-
 function App() {
-   
    return (
       <Routes>
          <Route path="/" element={<RootLayout />}>
@@ -30,10 +28,19 @@ function App() {
             <Route path="unauthorized" element={<Unauthorized />} />
 
             {/* PROTECTED ROUTES */}
-            <Route element={<RequireAuth />} >
+            <Route element={<RequireAuth />} allowedRoles={[ROLES.User]}>
                <Route path="/" element={<Home />} />
+            </Route>
+            <Route element={<RequireAuth />} allowedRoles={[ROLES.Editor]}>
                <Route path="editor" element={<Editor />} />
+            </Route>
+            <Route element={<RequireAuth />} allowedRoles={[ROLES.Admin]}>
                <Route path="admin" element={<Admin />} />
+            </Route>
+            {/* LOUNGE IS FOR AUTHORISED FOR MULTIPLE ROLES */}
+            <Route
+               element={<RequireAuth />}
+               allowedRoles={[ROLES.Editor, ROLES.Admin]}>
                <Route path="lounge" element={<Lounge />} />
             </Route>
 

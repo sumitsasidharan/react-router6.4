@@ -10,6 +10,7 @@ const Login = () => {
 
    const navigate = useNavigate();
    const location = useLocation();
+   // to get where the user came from
    const from = location.state?.from?.pathname || '/';
 
    const userRef = useRef();
