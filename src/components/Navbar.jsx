@@ -1,17 +1,29 @@
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 const Navbar = () => {
+
+   const isActiveStyles = ({ isActive }) => {
+      return isActive ? { color: 'red' } : { color: 'grey'}
+   }
+
+   // Link has 'replace', 'reloadDocument' props , etc
   return (
     <nav>
       <ul>
          <li>
-            <Link to="/" >Home</Link>
+            <NavLink style={isActiveStyles} to="/" replace >Home</NavLink>
          </li>
          <li>
-            <Link to="/about" >About</Link>
+            <NavLink style={isActiveStyles} to="/about" >About</NavLink>
          </li>
          <li>
-            <Link to="/contact" >Contact</Link>
+            <NavLink style={isActiveStyles} to="/contact" >Contact</NavLink>
+         </li>
+         <li>
+            <NavLink style={isActiveStyles} to="/books" >Books</NavLink>
+         </li>
+         <li>
+            <NavLink style={isActiveStyles} to="/products" >Products</NavLink>
          </li>
       </ul>
     </nav>
