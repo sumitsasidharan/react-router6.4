@@ -1,0 +1,14 @@
+import React from 'react'
+
+const Contact = () => {
+  return (
+     <div>
+        <h2>Contact Us</h2>
+
+        <p>Address: </p>
+        <p>Kalkaji, New Delhi</p>
+     </div>
+  );
+}
+
+export default Contact
