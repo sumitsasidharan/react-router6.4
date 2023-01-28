@@ -14,7 +14,7 @@ import {
    RouterProvider,
 } from 'react-router-dom';
 import Contact from './pages/Contact';
-import Data from './pages/Data';
+import Data, { dataLoader } from './pages/Data';
 import Home from './pages/Home';
 import RootLayout from './routeLayouts/RootLayout';
 
@@ -23,7 +23,7 @@ export const router = createBrowserRouter(
    createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
          <Route index element={<Home />} />
-         <Route path="data" element={<Data />} />
+         <Route path="data" element={<Data />} loader={dataLoader} />
          <Route path="contact" element={<Contact />} />
       </Route>
    )
@@ -55,4 +55,36 @@ const RootLayout = () => {
 }
 
 export default RootLayout;
+```
+
+### Data Fetching in Data component
+
+```js
+import { useLoaderData, useNavigation } from 'react-router-dom';
+
+import './Data.css';
+
+export default function Data() {
+   const dogUrl = useLoaderData();
+   console.log(dogUrl);
+
+   const navigation = useNavigation();
+
+   if (navigation.state === 'loading') {
+      return <h1>Loading....</h1>;
+   }
+
+   return (
+      <div className="img_Container">
+         <img src={dogUrl} alt="A DOG" />
+      </div>
+   );
+}
+
+export const dataLoader = async () => {
+   const res = await fetch('https://random.dog/woof.json');
+   const dog = await res.json();
+
+   return dog.url;
+};
 ```
