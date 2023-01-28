@@ -11,7 +11,7 @@ const Navbar = () => {
     <nav>
       <ul>
          <li>
-            <NavLink style={isActiveStyles} to="/" replace >Home</NavLink>
+            <NavLink style={isActiveStyles} to="/" state="in Navbar Link" replace >Home</NavLink>
          </li>
          <li>
             <NavLink style={isActiveStyles} to="/about" >About</NavLink>

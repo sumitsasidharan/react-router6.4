@@ -1,4 +1,4 @@
-import { Route, Routes, useRoutes } from 'react-router-dom';
+import { Route, Routes, useLocation, useRoutes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -12,6 +12,9 @@ import { ProductRoutes } from './routes/ProductRoutes';
 import RootLayout from './layouts/RootLayout';
 
 function App() {
+   const location = useLocation();
+   console.log(location);
+
    let element = useRoutes([
       {
          path: "/",
@@ -53,7 +56,7 @@ function App() {
             <Route path="/" element={<Home />} />
 
             {/* Book Route, the Layout Componet is not necessary */}
-            <Route path="/books" element={<BookLayout />}>
+            <Route path="books" element={<BookLayout />}>
                <Route index element={<BookList />} />
                <Route path=":id" element={<Book />} />
                <Route path="new" element={<NewBook />} />
